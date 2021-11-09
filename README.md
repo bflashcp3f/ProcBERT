@@ -3,12 +3,16 @@
 
 This repo contains code and data associated with EMNLP 2021 paper ["Pre-train or Annotate? Domain Adaptation with a Constrained Budget"](https://arxiv.org/abs/2109.04711).
 ```
-@article{Bai2021PretrainOA,
-  title={Pre-train or Annotate? Domain Adaptation with a Constrained Budget},
-  author={Fan Bai and Alan Ritter and Wei Xu},
-  journal={ArXiv},
-  year={2021},
-  volume={abs/2109.04711}
+@inproceedings{bai-etal-2021-pre,
+    title = "Pre-train or Annotate? Domain Adaptation with a Constrained Budget",
+    author = "Bai, Fan  and
+              Ritter, Alan  and
+              Xu, Wei",
+    booktitle = "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2021",
+    address = "Online and Punta Cana, Dominican Republic",
+    publisher = "Association for Computational Linguistics",
 }
 ```
 
@@ -30,12 +34,9 @@ model checkpoints (ProcBERT and Proc-RoBERTa) are accessible through [HuggingFac
 ```angular2html
 # After downloading the data, update the DATA_PATH variable in code/utils.py
 DATA_PATH=<DATA_PATH>
-
-# Set up OUTPUT_DIR before running experiments
-export OUTPUT_DIR=<OUTPUT_DIR>
 ```
 
-### Budget-aware Domain Adaptation Experiments  
+### Budget-aware Domain Adaptation Experiments (with EasyAdapt)
 ```angular2html
 # Named Entity Recognition (NER) 
 python code/ner_da_budget.py     \
@@ -43,7 +44,7 @@ python code/ner_da_budget.py     \
   --src_data pubmed     \
   --tgt_data chemsyn     \
   --gpu_ids 0,1   \
-  --output_dir "$OUTPUT_DIR"/da/pubmed_chemsyn     \
+  --output_dir ./output/da/pubmed_chemsyn     \
   --learning_rate 1e-5     \
   --task_name fa_ner     \
   --batch_size 16     \
@@ -59,7 +60,7 @@ python code/rel_da_budget.py \
   --src_data pubmed     \
   --tgt_data chemsyn     \
   --gpu_ids 0,1  \
-  --output_dir "$OUTPUT_DIR"/da/pubmed_chemsyn \
+  --output_dir ./output/da/pubmed_chemsyn \
   --learning_rate 1e-5 \
   --task_name fa_rel \
   --batch_size 48 \
@@ -70,16 +71,26 @@ python code/rel_da_budget.py \
   --down_sample \
   --down_sample_rate 0.4 \
   --save_model
+
+```
+To obtain ProcBERT results with different budgets under six domain adaptation settings:
+```angular2html
+# NER
+sh script/ner/run_ner_da_budget_all.sh
+
+# RE
+sh script/rel/run_rel_da_budget_all.sh
 ```
 
-### Budget-aware Target-only Experiments
+
+### Budget-aware Target-domain-only Experiments
 ```angular2html
 # Named Entity Recognition (NER) 
 python code/ner_budget.py \
   --lm_model procbert \
   --data_name chemsyn \
   --gpu_ids 0,1  \
-  --output_dir "$OUTPUT_DIR"/chemsyn \
+  --output_dir ./output/chemsyn \
   --learning_rate 1e-5 \
   --task_name ner \
   --batch_size 16 \
@@ -93,7 +104,7 @@ python code/rel_budget.py \
   --lm_model procbert \
   --data_name chemsyn \
   --gpu_ids 0,1  \
-  --output_dir "$OUTPUT_DIR"/chemsyn \
+  --output_dir ./output/chemsyn \
   --learning_rate 1e-5 \
   --task_name rel \
   --batch_size 48 \
@@ -105,6 +116,16 @@ python code/rel_budget.py \
   --save_model
 ```
 
+
+To obtain ProcBERT results with different budgets on three datasets:
+```angular2html
+# NER
+sh script/ner/run_ner_budget_all.sh
+
+# RE
+sh script/rel/run_rel_budget_all.sh
+```
+
 ### Auxiliary Experiments
 ```angular2html
 # Named Entity Recognition (NER) 
@@ -112,7 +133,7 @@ python code/ner.py \
   --lm_model procbert \
   --data_name chemsyn \
   --gpu_ids 0,1  \
-  --output_dir "$OUTPUT_DIR"/chemsyn \
+  --output_dir ./output/chemsyn \
   --learning_rate 1e-5 \
   --task_name ner \
   --batch_size 16 \
@@ -125,7 +146,7 @@ python code/rel.py \
   --lm_model procbert \
   --data_name chemsyn \
   --gpu_ids 0,1  \
-  --output_dir "$OUTPUT_DIR"/chemsyn \
+  --output_dir ./output/chemsyn \
   --learning_rate 1e-5 \
   --task_name rel \
   --batch_size 48 \
@@ -136,3 +157,11 @@ python code/rel.py \
   --save_model
 ```
 
+To obtain ProcBERT results on all three datasets:
+```angular2html
+# NER
+sh script/ner/run_ner_all.sh
+
+# RE
+sh script/rel/run_rel_all.sh
+```

@@ -409,9 +409,10 @@ def get_processed_sentences(data_name, data_class, max_len, batch_size,
                 try:
                     ent_id, label_offset, ent_str = item.split('\t')
                 except:
-                    print('item split problem')
-                    print(ann_file)
-                    print(item)
+                    # print('item split problem')
+                    # print(ann_file)
+                    # print(item)
+                    continue
 
                 try:
                     if ';' not in label_offset:
@@ -421,9 +422,9 @@ def get_processed_sentences(data_name, data_class, max_len, batch_size,
                     else:
                         continue
                 except:
-                    print('label_offset split problem')
-                    print(label_offset)
-                #                 raise
+                    # print('label_offset split problem')
+                    # print(label_offset)
+                    continue
 
                 assert ent_str == all_sen_str[ent_start:ent_end] or \
                        ent_str == all_sen_str[ent_start:ent_end].strip()
@@ -438,8 +439,9 @@ def get_processed_sentences(data_name, data_class, max_len, batch_size,
                 try:
                     rel_id, action_rel_ent = item.split('\t')
                 except:
-                    print('item split problem')
-                    print(item)
+                    # print('item split problem')
+                    # print(item)
+                    continue
 
                 _, arg1_id = action_rel_ent.split(' ')[0].split(':')
 
@@ -468,8 +470,9 @@ def get_processed_sentences(data_name, data_class, max_len, batch_size,
                 try:
                     rel_id, action_rel_ent = item.split('\t')
                 except:
-                    print('item split problem')
-                    print(item)
+                    # print('item split problem')
+                    # print(item)
+                    continue
 
                 rel_str, arg1_id_str, arg2_id_str = action_rel_ent.split(' ')
                 arg1_id = arg1_id_str[len('Arg1:'):]
@@ -977,9 +980,10 @@ def get_processed_sentences_budget(data_name, data_class, budget, max_len, batch
                 try:
                     ent_id, label_offset, ent_str = item.split('\t')
                 except:
-                    print('item split problem')
-                    print(ann_file)
-                    print(item)
+                    # print('item split problem')
+                    # print(ann_file)
+                    # print(item)
+                    continue
 
                 try:
                     if ';' not in label_offset:
@@ -989,9 +993,9 @@ def get_processed_sentences_budget(data_name, data_class, budget, max_len, batch
                     else:
                         continue
                 except:
-                    print('label_offset split problem')
-                    print(label_offset)
-                #                 raise
+                    # print('label_offset split problem')
+                    # print(label_offset)
+                    continue
 
                 assert ent_str == all_sen_str[ent_start:ent_end] or \
                        ent_str == all_sen_str[ent_start:ent_end].strip()
@@ -1006,8 +1010,9 @@ def get_processed_sentences_budget(data_name, data_class, budget, max_len, batch
                 try:
                     rel_id, action_rel_ent = item.split('\t')
                 except:
-                    print('item split problem')
-                    print(item)
+                    # print('item split problem')
+                    # print(item)
+                    continue
 
                 _, arg1_id = action_rel_ent.split(' ')[0].split(':')
 
@@ -1036,8 +1041,9 @@ def get_processed_sentences_budget(data_name, data_class, budget, max_len, batch
                 try:
                     rel_id, action_rel_ent = item.split('\t')
                 except:
-                    print('item split problem')
-                    print(item)
+                    # print('item split problem')
+                    # print(item)
+                    continue
 
                 rel_str, arg1_id_str, arg2_id_str = action_rel_ent.split(' ')
                 arg1_id = arg1_id_str[len('Arg1:'):]
@@ -1551,9 +1557,10 @@ def get_processed_sentences_da_budget(data_name_list, data_class, budget, max_le
                     try:
                         ent_id, label_offset, ent_str = item.split('\t')
                     except:
-                        print('item split problem')
-                        print(ann_file)
-                        print(item)
+                        # print('item split problem')
+                        # print(ann_file)
+                        # print(item)
+                        continue
 
                     try:
                         if ';' not in label_offset:
@@ -1563,9 +1570,9 @@ def get_processed_sentences_da_budget(data_name_list, data_class, budget, max_le
                         else:
                             continue
                     except:
-                        print('label_offset split problem')
-                        print(label_offset)
-                    #                 raise
+                        # print('label_offset split problem')
+                        # print(label_offset)
+                        continue
 
                     assert ent_str == all_sen_str[ent_start:ent_end] or \
                            ent_str == all_sen_str[ent_start:ent_end].strip()
@@ -1580,8 +1587,9 @@ def get_processed_sentences_da_budget(data_name_list, data_class, budget, max_le
                     try:
                         rel_id, action_rel_ent = item.split('\t')
                     except:
-                        print('item split problem')
-                        print(item)
+                        # print('item split problem')
+                        # print(item)
+                        continue
 
                     _, arg1_id = action_rel_ent.split(' ')[0].split(':')
 
@@ -1610,8 +1618,9 @@ def get_processed_sentences_da_budget(data_name_list, data_class, budget, max_le
                     try:
                         rel_id, action_rel_ent = item.split('\t')
                     except:
-                        print('item split problem')
-                        print(item)
+                        # print('item split problem')
+                        # print(item)
+                        continue
 
                     rel_str, arg1_id_str, arg2_id_str = action_rel_ent.split(' ')
                     arg1_id = arg1_id_str[len('Arg1:'):]
